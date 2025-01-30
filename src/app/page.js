@@ -4,7 +4,7 @@ import styles from "./page.module.css";
 const data = [
   {
     category: "Fruits",
-    item: [
+    items: [
       {
         price: "$1",
         stocked: true,
@@ -20,7 +20,7 @@ const data = [
   },
   {
     category: "Vegetables",
-    item: [
+    items: [
       {
         price: "$2",
         stocked: true,
@@ -70,28 +70,45 @@ function ProductCategory(props) {
   return <h2>{props.data.category}</h2>;
 }
 
-function Item(props) {
-  const items = [];
-  for (i = 0; i < props.categoryItem.item.length; i++) {
-    items.push();
-  }
+function ProductItem(props) {
   return (
     <div className="product-list">
-      {/* <p>{props.categoryItem.item[i].name}</p>
-      <p>{props.item[i].price}</p> */}
-      {items}
+      <p className="product">{props.productItem.name}</p>
+      <p>{props.productItem.price}</p>
     </div>
+  );
+}
+function CategoryItem(props) {
+  const item = [];
+  console.log(props);
+  for (let i = 0; i < props.categoryProductItem.items.length; i++) {
+    item.push(
+      <ProductItem
+        productItem={props.categoryProductItem.items[i]}
+      ></ProductItem>
+    );
+  }
+  return (
+    <div  className="product">
+      {item}
+      </div>
   );
 }
 
 export default function Home() {
+
+
   return (
     <div className="container">
+      <div className="search">
       <SearchBar></SearchBar>
+      </div>
+     
       <ProductTable></ProductTable>
-      <ProductCategory data = {data}></ProductCategory>
-      <Item categoryItem={data[0]}></Item>
-      <Item categoryItem={data[1]}></Item>
+      <ProductCategory data={data[0]}></ProductCategory>
+      <CategoryItem categoryProductItem={data[0]}></CategoryItem>
+      <ProductCategory data={data[1]}></ProductCategory>
+      <CategoryItem categoryProductItem={data[1]}></CategoryItem>
     </div>
   );
 }

@@ -48,11 +48,15 @@ a {
   background-color: bisque;
   display: flex;
   flex-direction: column;
-justify-content: center;
+justify-self: center;
 margin: 100px;
 }
-
-.name-list{
+.container .search{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .name-list{
   display: flex;
   justify-content: space-between;
 }
@@ -77,4 +81,8 @@ h1{
   display: flex;
   justify-content: space-between;
   width: 200px;
+}
+
+.product{
+  padding-right: 10px;
 }
